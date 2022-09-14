@@ -1,0 +1,11 @@
+dist
+node_modules
+.eslintrc
+.prettierrc
+package.json
+README.md
+.idea
+.vscode
+.vscode/**
+.DS_Store
+*.html

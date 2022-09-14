@@ -1,0 +1,174 @@
+{
+  "extends": [
+    // By extending from a plugin config, we can get recommended rules without having to add them manually.
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
+    // Make sure it's always the last config, so it gets the chance to override other configs.
+    "eslint-config-prettier"
+  ],
+  "plugins": [
+    "react-hooks"
+  ],
+  "settings": {
+    "react": {
+      // Tells eslint-plugin-react to automatically detect the version of React to use.
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "off",
+    // Checks effect dependencies // warn
+    "import/prefer-default-export": [
+      0,
+      {}
+    ],
+    "react/prefer-stateless-function": [
+      0,
+      {
+        "ignorePureComponents": true
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/prop-types": [
+      2,
+      {}
+    ],
+    "react/require-default-props": [
+      0,
+      {}
+    ],
+    "react/forbid-prop-types": [
+      0,
+      {}
+    ],
+    "react/jsx-one-expression-per-line": [
+      0,
+      {}
+    ],
+    "react/no-multi-comp": 0,
+    "arrow-body-style": [
+      0
+    ],
+    "comma-dangle": [
+      "error",
+      "only-multiline"
+    ],
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "import/no-named-as-default": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 150,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignorePattern": "d=\"([\\s\\S]*?)\""
+      }
+    ],
+    "nonblock-statement-body-position": [
+      "error",
+      "any"
+    ],
+    "no-return-assign": [
+      "error",
+      "except-parens"
+    ],
+    "no-shadow": [
+      1
+    ],
+    "no-continue": "off",
+    "class-methods-use-this": [
+      0,
+      {}
+    ],
+    "camelcase": [
+      "error",
+      {
+        "allow": [
+          "^UNSAFE_"
+        ]
+      }
+    ],
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "no-param-reassign": "off",
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-console": "off",
+    "react/jsx-indent-props": [
+      2,
+      2
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],
+    "react/sort-comp": [
+      0,
+      {
+        "order": [
+          "lifecycle",
+          "render"
+        ],
+        "groups": {
+          "lifecycle": [
+            "displayName",
+            "propTypes",
+            "contextTypes",
+            "childContextTypes",
+            "mixins",
+            "statics",
+            "defaultProps",
+            "constructor",
+            "getDefaultProps",
+            "state",
+            "getInitialState",
+            "getChildContext",
+            "getDerivedStateFromProps",
+            "componentWillMount",
+            "UNSAFE_componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "UNSAFE_componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "UNSAFE_componentWillUpdate",
+            "getSnapshotBeforeUpdate",
+            "componentDidUpdate",
+            "componentDidCatch",
+            "componentWillUnmount"
+          ]
+        }
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
+  
