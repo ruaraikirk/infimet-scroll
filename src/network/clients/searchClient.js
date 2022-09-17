@@ -1,18 +1,18 @@
 import HttpClientNetwork from '../client';
 
-class DepartmentClient extends HttpClientNetwork {
+class SearchClient extends HttpClientNetwork {
   constructor() {
-    super('/public/collection/v1/departments');
+    super('/public/collection/v1/search');
   }
 
-  departments = {
+  search = {
     get: () => this.instance.get(``)
   };
 }
 
-const departmentClient = new DepartmentClient();
+const searchClient = new SearchClient();
 
-delete departmentClient.constructor;
-Object.freeze(departmentClient);
+delete searchClient.constructor;
+Object.freeze(searchClient);
 
-export default departmentClient;
+export default searchClient;
