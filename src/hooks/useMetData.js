@@ -10,6 +10,7 @@ const useMetData = () => {
   const [error, setError] = useState(false);
 
   const loadListData = async (deptId) => {
+    setObjectIds(null);
     setObjects([]);
     const loadListFn = deptId ? () => objectClient.objects.getByDept(deptId) : () => objectClient.objects.get();
     const objectsResponse = await loadListFn();

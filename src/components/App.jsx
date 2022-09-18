@@ -1,12 +1,12 @@
 import React from 'react';
 import { flatten, isEmpty } from 'ramda';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Departments from './components/Departments';
-import Body from './components/Body';
-import Error from './components/Error';
-import { objectClient } from './network/clients';
-import useMetData from './hooks/useMetData';
+import Header from './Header';
+import Footer from './Footer';
+import Departments from './Departments';
+import Body from './Body';
+import Error from './Error';
+import { objectClient } from '../network/clients';
+import useMetData from '../hooks/useMetData';
 
 const App = () => {
   const { states, actions } = useMetData();

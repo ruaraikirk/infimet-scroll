@@ -4,6 +4,7 @@ import { departmentClient } from '../network/clients';
 
 const Departments = ({ getObjectsByDept }) => {
   const [departments, setDepartments] = useState([]);
+  const [activeDept, setActiveDept] = useState(null);
 
   useEffect(() => {
     departmentClient.departments.get().then((departmentResponse) => setDepartments(departmentResponse.departments));
@@ -11,11 +12,34 @@ const Departments = ({ getObjectsByDept }) => {
 
   return (
     <div className="flex justify-start lg:justify-center items-center w-screen overflow-x-auto border-b-4">
+      <div
+        key="x"
+        className={`${
+          !activeDept ? 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500' : ''
+        } avatar placeholder p-1 rounded-full`}
+      >
+        <div
+          className="bg-neutral-content text-neutral-content rounded-full w-16"
+          onClick={() => {
+            setActiveDept(null);
+            getObjectsByDept();
+            alert(`You are now viewing all departments.`);
+          }}
+        >
+          <span className="text-1xl text-neutral-focus">All Dept.</span>
+        </div>
+      </div>
       {departments.map((dept, i) => (
-        <div key={i} className="avatar placeholder p-1">
+        <div
+          key={i}
+          className={`${
+            activeDept === dept.departmentId ? 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500' : ''
+          } avatar placeholder p-1 rounded-full`}
+        >
           <div
             className="bg-neutral-content text-neutral-content rounded-full w-16"
             onClick={() => {
+              setActiveDept(dept.departmentId);
               getObjectsByDept(dept.departmentId);
               alert(`You are now viewing by ${dept.displayName}`);
             }}
@@ -24,27 +48,6 @@ const Departments = ({ getObjectsByDept }) => {
           </div>
         </div>
       ))}
-      <div key="x" className="avatar placeholder p-1">
-        <div
-          className="bg-neutral-content text-neutral-content rounded-full w-16"
-          onClick={() => {
-            getObjectsByDept();
-            alert(`You are now viewing all departments.`);
-          }}
-        >
-          <span className="text-1xl text-neutral-focus">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </span>
-        </div>
-      </div>
     </div>
   );
 };

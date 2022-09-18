@@ -2,19 +2,19 @@ import HttpClientNetwork from '../client';
 
 class ObjectClient extends HttpClientNetwork {
   constructor() {
-    super('/public/collection/v1/objects');
+    super('/public/collection/v1');
   }
 
   objects = {
-    get: () => this.instance.get(``),
-    getByDept: (id) => this.instance.get(`?departmentIds=${id}`),
-    getByDeptList: (list) => this.instance.get(`?departmentIds=${list}`),
-    getByMetadataDate: (date) => this.instance.get(`?metadataDate=${date}`),
-    getByMetaDateAndDept: (date, id) => this.instance.get(`?metadataDate=${date}&departmentIds=${id}`)
+    get: () => this.instance.get(`objects`),
+    getByDept: (id) => this.instance.get(`objects?departmentIds=${id}`),
+    getByDeptList: (list) => this.instance.get(`objects?departmentIds=${list}`),
+    getByMetadataDate: (date) => this.instance.get(`objects?metadataDate=${date}`),
+    getByMetaDateAndDept: (date, id) => this.instance.get(`objects?metadataDate=${date}&departmentIds=${id}`)
   };
 
   object = {
-    get: (id) => this.instance.get(`/${id}`)
+    get: (id) => this.instance.get(`objects/${id}`)
   };
 }
 
