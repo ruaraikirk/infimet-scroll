@@ -10,7 +10,7 @@ const Departments = ({ getObjectsByDept }) => {
   }, []);
 
   return (
-    <div className="flex justify-start lg:justify-center items-center w-screen overflow-x-auto">
+    <div className="flex justify-start lg:justify-center items-center w-screen overflow-x-auto border-b-4">
       {departments.map((dept, i) => (
         <div key={i} className="avatar placeholder p-1">
           <div

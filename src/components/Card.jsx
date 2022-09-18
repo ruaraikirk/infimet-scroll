@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { saveAs } from 'file-saver';
 import { isEmpty } from 'ramda';
+import { RWebShare } from 'react-web-share';
 import fall from '../assets/fallback.png';
 
 const Card = ({ artObject }) => {
@@ -12,7 +13,13 @@ const Card = ({ artObject }) => {
   };
 
   const downloadImage = () => {
-    saveAs(primaryImageSmall, `met_image.jpg`);
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const isFileSaverSupported = !!new Blob();
+      saveAs(primaryImageSmall, `met_image.jpg`);
+    } catch (e) {
+      alert('Feature not supported on this browser!');
+    }
   };
 
   return (
@@ -67,22 +74,31 @@ const Card = ({ artObject }) => {
                   ></path>
                 </svg>
               </button>
-              <button className="btn btn-outline btn-secondary btn-xs" onClick={() => navigator.share(objectURL)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-              </button>
+              <RWebShare
+                data={{
+                  text: 'Shared from infiMET scroll',
+                  url: objectURL,
+                  title: title
+                }}
+                onClick={() => console.info('Object url shared!')}
+              >
+                <button className="btn btn-outline btn-secondary btn-xs">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </RWebShare>
             </div>
           </div>
         </div>
