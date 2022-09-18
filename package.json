@@ -7,16 +7,19 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint . --ext .js,.jsx",
+    "test": "vitest"
   },
   "dependencies": {
+    "@testing-library/react": "^13.4.0",
     "axios": "^0.27.2",
     "daisyui": "^2.27.0",
     "file-saver": "^2.0.5",
     "ramda": "^0.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-infinite-scroller": "^1.2.6"
+    "react-infinite-scroller": "^1.2.6",
+    "vitest": "^0.23.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
@@ -30,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^20.0.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",

@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { flatten, isEmpty } from 'ramda';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Departments from './components/Departments';
 import Body from './components/Body';
+import Error from './components/Error';
 import { objectClient } from './network/clients';
-import getChunkedObjectArray from './utils/getChunkedObjectArray';
+import useMetData from './hooks/useMetData';
 
 const App = () => {
-  const [objectIds, setObjectIds] = useState(null);
-  const [objects, setObjects] = useState([]);
-  const [chunk, setChunk] = useState(0);
-  const [fetching, setFetching] = useState(false);
-  const [error, setError] = useState(false);
-
-  const loadListData = async (deptId) => {
-    setObjects([]);
-    const loadListFn = deptId ? () => objectClient.objects.getByDept(deptId) : () => objectClient.objects.get();
-    const objectsResponse = await loadListFn();
-    const chunkedObjectIds = getChunkedObjectArray(objectsResponse.objectIDs);
-    setObjectIds(chunkedObjectIds);
-  };
+  const { states, actions } = useMetData();
+  const { objectIds, objects, chunk, fetching, error } = states;
+  const { setObjects, setChunk, setFetching, setError, loadListData } = actions;
 
   const fetchObjects = async () => {
     if (fetching) {
       return;
     }
-    if (objectIds && !isEmpty(objectIds)) {
+    if (states.objectIds && !isEmpty(objectIds)) {
       setFetching(true);
       // Prepare network calls
       const promises = objectIds[chunk].map((id) => {
@@ -49,12 +40,8 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    loadListData();
-  }, []);
-
   if (error) {
-    <div>Error ...</div>;
+    <Error />;
   }
 
   return (

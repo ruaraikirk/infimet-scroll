@@ -28,7 +28,11 @@ const Card = ({ artObject }) => {
           </h2>
           <div className="card-actions justify-end">
             <div className="btn-group">
-              <button className="btn btn-outline btn-secondary btn-xs" onClick={() => window.open(objectURL, '_blank')}>
+              <button
+                data-testid="more-info"
+                className="btn btn-outline btn-secondary btn-xs"
+                onClick={() => window.open(objectURL, '_blank')}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
