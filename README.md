@@ -6,7 +6,7 @@ infimet-scroll is a React app that displays images and information from the MET 
 
 ## Live Demo
 
-Hosted on [Netlify](https://63267624af2069468b8524f4--eclectic-youtiao-88ef51.netlify.app/)
+Hosted on [Netlify](https://63275feddefec85790897a91--eclectic-youtiao-88ef51.netlify.app/)
 
 ## Tools
 
